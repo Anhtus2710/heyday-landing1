@@ -1,0 +1,258 @@
+/* Import Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Navbar Container */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 110px;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.75) 50%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 120px;
+}
+
+/* Logo Section */
+.logo {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.logo img {
+  width: 110px;
+  height: auto;
+  max-height: 100px;
+  object-fit: contain;
+}
+
+/* Navigation Menu */
+.nav-buttons {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  flex: 1;
+  justify-content: center;
+}
+
+.nav-item {
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  text-transform: uppercase;
+  color: #ffffff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  padding: 10px 0;
+  position: relative;
+}
+
+.nav-item:hover {
+  color: #ffd700;
+  text-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
+  transform: translateY(-1px);
+}
+
+.button-text {
+  background: url("/assets/btn/btn-hero.png") center/contain no-repeat;
+  background-size: 100% 100%; /* Stretch to fit button */
+  border: none;
+  color: #d4af37;
+  padding: 20px 45px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  cursor: pointer;
+  font-family: "Cinzel", "Arial", sans-serif;
+  transition: all 0.3s ease;
+  text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+  min-width: 200px; /* Đảm bảo button có kích thước phù hợp */
+  min-height: 60px;
+}
+
+.btn-hero:hover {
+  transform: translateY(-2px) scale(1.05);
+  text-shadow: 0 0 15px rgba(212, 175, 55, 0.8);
+  filter: brightness(1.1);
+}
+
+.btn-hero:active {
+  transform: translateY(-1px) scale(1.02);
+}
+
+.navbar-button:hover {
+  background: rgba(0, 0, 0, 0.5);
+  border-color: #ffd700;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+  transform: translateY(-2px);
+}
+
+.navbar-button:hover .button-text {
+  background: linear-gradient(180deg, #ffd700 0%, #ffffff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.navbar-button:active {
+  transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .navbar {
+    padding: 0 60px;
+  }
+
+  .logo img {
+    width: 100px;
+  }
+
+  .nav-buttons {
+    gap: 35px;
+  }
+
+  .nav-item {
+    font-size: 14px;
+  }
+
+  .navbar-button {
+    width: 180px;
+    height: 50px;
+    padding: 0 15px;
+  }
+
+  .button-text {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 992px) {
+  .navbar {
+    padding: 0 40px;
+  }
+
+  .nav-buttons {
+    gap: 25px;
+  }
+
+  .nav-item {
+    font-size: 13px;
+  }
+
+  .navbar-button {
+    width: 160px;
+    height: 45px;
+    padding: 0 12px;
+  }
+
+  .button-text {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    height: 80px;
+    padding: 0 20px;
+  }
+
+  .logo img {
+    width: 80px;
+  }
+
+  .nav-buttons {
+    display: none;
+  }
+
+  .navbar-button {
+    width: 140px;
+    height: 40px;
+    padding: 0 10px;
+  }
+
+  .button-text {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    padding: 0 15px;
+  }
+
+  .logo img {
+    width: 70px;
+  }
+
+  .navbar-button {
+    width: 120px;
+    height: 35px;
+    padding: 0 8px;
+  }
+
+  .button-text {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 360px) {
+  .navbar {
+    padding: 0 10px;
+  }
+
+  .logo img {
+    width: 60px;
+  }
+
+  .navbar-button {
+    width: 100px;
+    height: 32px;
+    padding: 0 6px;
+  }
+
+  .button-text {
+    font-size: 10px;
+    line-height: 1.2;
+  }
+}
+
+/* Mobile Menu (Optional - for future hamburger menu) */
+.mobile-menu-toggle {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.mobile-menu-toggle span {
+  width: 25px;
+  height: 3px;
+  background: #ffffff;
+  margin: 3px 0;
+  transition: 0.3s;
+  border-radius: 2px;
+}
+
+@media (max-width: 768px) {
+  .mobile-menu-toggle {
+    display: flex;
+  }
+}

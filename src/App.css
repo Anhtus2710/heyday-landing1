@@ -1,0 +1,208 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  color: #fff;
+  overflow-x: hidden;
+  line-height: 1.6;
+  background: #000;
+}
+
+/* Background chung */
+.landing-bg {
+  background: url("/assets/image/picture.png") no-repeat center top;
+  background-size: cover;
+  background-attachment: scroll;
+}
+
+/* Navbar */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 15px 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(6px);
+}
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+}
+
+.navbar ul li a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.navbar ul li a:hover {
+  color: #FFD700;
+}
+
+/* Scroll container */
+.scroll-container {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* Section layout */
+.section {
+  min-height: 100vh;
+  width: 100%;
+  padding: 120px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+}
+
+/* Background parallax effect */
+.home-section { background-position: center top; }
+.about-section { background-position: center -100vh; }
+.gameplay-section { background-position: center -200vh; }
+.mystical-section { background-position: center -300vh; }
+.auction-section { background-position: center -400vh; }
+.gamefi-section { background-position: center -500vh; }
+.news-section { background-position: center -600vh; }
+.studio-section { background-position: center -700vh; }
+
+/* Typography */
+.section h1,
+.section h2 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin-bottom: 20px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  background: linear-gradient(90deg, #FEFFBC 0%, #FFD700 50%, #FFC671 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.section p {
+  max-width: 800px;
+  margin: 0 auto;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #ddd;
+}
+
+/* Footer */
+.footer {
+  padding: 30px 20px;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.85);
+  font-size: 0.9rem;
+  color: #aaa;
+}
+
+.footer a {
+  color: #FFD700;
+  margin: 0 10px;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+/* ===================== */
+/* 📱 Responsive Mobile */
+/* ===================== */
+
+/* Tablet (dưới 1024px) */
+@media (max-width: 1024px) {
+  .section {
+    padding: 100px 30px;
+  }
+
+  .navbar ul {
+    gap: 15px;
+  }
+
+  .section h1,
+  .section h2 {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+  }
+
+  .section p {
+    font-size: 1rem;
+    max-width: 90%;
+  }
+}
+
+/* Mobile (dưới 768px) */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 20px;
+  }
+
+  .navbar ul {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    gap: 8px;
+  }
+
+  .section {
+    padding: 80px 20px;
+  }
+
+  .section h1,
+  .section h2 {
+    font-size: clamp(1.6rem, 5vw, 2rem);
+    letter-spacing: 1px;
+  }
+
+  .section p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  .footer {
+    font-size: 0.8rem;
+    padding: 20px 10px;
+  }
+}
+
+/* Extra Small (dưới 480px) */
+@media (max-width: 480px) {
+  .section {
+    padding: 60px 15px;
+  }
+
+  .section h1,
+  .section h2 {
+    font-size: 1.4rem;
+  }
+
+  .section p {
+    font-size: 0.9rem;
+  }
+
+  .navbar ul li a {
+    font-size: 0.9rem;
+  }
+}

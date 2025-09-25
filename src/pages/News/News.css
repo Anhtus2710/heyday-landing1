@@ -1,0 +1,13 @@
+
+
+/* Giữ khoảng cách tự nhiên, không bị gap */
+.news-banner img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+section {
+  margin: 0;
+  padding: 0;
+}

@@ -1,0 +1,52 @@
+.auction-container {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: left;
+  color: #fff;
+}
+
+.auction-title {
+  font-size: 42px;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 25px;
+  background: linear-gradient(90deg, #feffbc 0%, #ffd700 50%, #ffc671 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+}
+
+.auction-desc {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #ddd;
+  margin-bottom: 25px;
+}
+
+.auction-list {
+  list-style: none;
+  padding: 0;
+}
+
+.auction-list li {
+  font-size: 1rem;
+  margin-bottom: 12px;
+  padding-left: 24px;
+  position: relative;
+  color: #eee;
+}
+
+.auction-list li::before {
+  content: "✦";
+  position: absolute;
+  left: 0;
+  color: #ffd700;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .auction-container {
+    text-align: center;
+  }
+}
