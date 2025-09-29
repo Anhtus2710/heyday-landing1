@@ -1,36 +1,91 @@
+/* ==========================
+   GameFi.css – Fully Responsive with Fluid Layout
+   ========================== */
+
+/* CSS Custom Properties for fluid scaling */
+:root {
+  --card-min-width: 280px;
+  --card-max-width: 400px;
+  --card-aspect-ratio: 1.2;
+  --image-aspect-ratio: 1.4;
+  --container-padding: clamp(10px, 3vw, 30px);
+  --card-padding: clamp(15px, 2.5vw, 25px);
+  --card-gap: clamp(15px, 3vw, 30px);
+  --title-size: clamp(1.8rem, 4.5vw, 2.625rem);
+  --card-title-size: clamp(1rem, 2.5vw, 1.25rem);
+  --card-desc-size: clamp(0.85rem, 2vw, 1rem);
+}
+
 .gamefi-container {
-  max-width: 1100px;
+  max-width: min(1200px, 95vw);
   margin: 0 auto;
   text-align: center;
   color: #fff;
+  padding: 0 var(--container-padding);
+  width: 100%;
 }
 
 .gamefi-title {
-  font-size: 42px;
+  font-size: var(--title-size);
   font-weight: 700;
   text-transform: uppercase;
-  margin-bottom: 50px;
+  margin-bottom: clamp(30px, 6vw, 50px);
   background: linear-gradient(90deg, #FEFFBC 0%, #FFD700 50%, #FFC671 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
   text-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+  line-height: 1.2;
 }
 
-/* Grid layout */
+/* Slider Container */
+.gamefi-slider-container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+/* Slider */
+.gamefi-slider {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  height: auto;
+}
+
+/* Individual Slide */
+.gamefi-slide {
+  flex: 0 0 100%;
+  width: 100%;
+}
+
+/* Grid layout within each slide - Fluid responsive grid */
 .gamefi-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(var(--card-min-width), 1fr));
+  gap: var(--card-gap);
+  padding: 0 clamp(5px, 2vw, 15px);
+  width: 100%;
+  max-width: 100%;
+  align-items: stretch;
 }
 
+/* GameFi Card - Fully responsive */
 .gamefi-card {
   background: rgba(0, 0, 0, 0.6);
   border: 1px solid rgba(255, 215, 0, 0.3);
-  border-radius: 10px;
-  padding: 20px;
+  border-radius: clamp(8px, 1.5vw, 12px);
+  padding: var(--card-padding);
   transition: all 0.3s ease;
   text-align: center;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  min-width: var(--card-min-width);
+  max-width: var(--card-max-width);
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
 }
 
 .gamefi-card:hover {
@@ -40,15 +95,19 @@
   box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
 }
 
-/* Card image */
+/* Card image - Fully responsive */
 .card-image {
   width: 100%;
-  max-width: 280px;
-  height: auto;
-  border-radius: 8px;
-  margin-bottom: 15px;
+  height: clamp(150px, 25vw, 250px);
+  min-height: 150px;
+  max-height: 300px;
+  border-radius: clamp(6px, 1vw, 10px);
+  margin-bottom: clamp(10px, 2vw, 20px);
   object-fit: cover;
-  transition: transform 0.3s ease, filter 0.3s ease;
+  object-position: center;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  aspect-ratio: var(--image-aspect-ratio);
 }
 
 .card-image:hover {
@@ -57,26 +116,274 @@
 }
 
 .card-title {
-  font-size: 20px;
+  font-size: var(--card-title-size);
   font-weight: 600;
   color: #FFD700;
-  margin-bottom: 12px;
+  margin-bottom: clamp(8px, 1.5vw, 15px);
+  flex-shrink: 0;
+  line-height: 1.3;
+  word-wrap: break-word;
+  hyphens: auto;
 }
 
 .card-desc {
-  font-size: 1rem;
+  font-size: var(--card-desc-size);
   line-height: 1.6;
   color: #ddd;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  word-wrap: break-word;
+  hyphens: auto;
+  overflow-wrap: break-word;
 }
 
-/* Responsive */
-@media (max-width: 992px) {
+/* Pagination Dots */
+.pagination-dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 30px;
+  flex-wrap: wrap;
+}
+
+.pagination-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 215, 0, 0.5);
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.pagination-dot:hover {
+  border-color: #FFD700;
+  background: rgba(255, 215, 0, 0.2);
+  transform: scale(1.1);
+}
+
+.pagination-dot.active {
+  background: #FFD700;
+  border-color: #FFD700;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+  transform: scale(1.2);
+}
+
+.pagination-dot.active::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 6px;
+  height: 6px;
+  background: #000;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* ========== Fluid Responsive Design ========== */
+
+/* Large screens - 4+ cards per row */
+@media (min-width: 1400px) {
+  .gamefi-grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: clamp(25px, 4vw, 40px);
+  }
+  
+  .gamefi-card {
+    max-width: 350px;
+  }
+}
+
+/* Desktop - 3 cards per row */
+@media (max-width: 1399px) and (min-width: 1000px) {
+  .gamefi-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: clamp(20px, 3vw, 35px);
+  }
+}
+
+/* Tablet landscape - 2 cards per row */
+@media (max-width: 999px) and (min-width: 768px) {
+  .gamefi-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: clamp(18px, 2.5vw, 30px);
+  }
+  
+  .gamefi-card {
+    min-width: 250px;
+    max-width: 320px;
+  }
+  
+  .card-image {
+    height: clamp(160px, 20vw, 200px);
+  }
+}
+
+/* Tablet portrait - 2 cards per row */
+@media (max-width: 767px) and (min-width: 600px) {
+  .gamefi-grid {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: clamp(15px, 2vw, 25px);
+  }
+  
+  .gamefi-card {
+    min-width: 220px;
+    max-width: 300px;
+  }
+  
+  .card-image {
+    height: clamp(140px, 18vw, 180px);
+  }
+  
+  .pagination-dots {
+    gap: clamp(8px, 1.5vw, 12px);
+    margin-top: clamp(20px, 4vw, 30px);
+  }
+  
+  .pagination-dot {
+    width: clamp(8px, 1.5vw, 12px);
+    height: clamp(8px, 1.5vw, 12px);
+  }
+}
+
+/* Mobile landscape - 1-2 cards per row */
+@media (max-width: 599px) and (min-width: 480px) {
+  .gamefi-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: clamp(12px, 1.5vw, 20px);
+  }
+  
+  .gamefi-card {
+    min-width: 200px;
+    max-width: 280px;
+  }
+  
+  .card-image {
+    height: clamp(120px, 15vw, 160px);
+  }
+  
+  .pagination-dots {
+    gap: clamp(6px, 1vw, 10px);
+    margin-top: clamp(15px, 3vw, 25px);
+  }
+  
+  .pagination-dot {
+    width: clamp(6px, 1vw, 10px);
+    height: clamp(6px, 1vw, 10px);
+  }
+}
+
+/* Mobile portrait - 1 card per row */
+@media (max-width: 479px) {
+  .gamefi-container {
+    padding: 0 clamp(5px, 2vw, 15px);
+  }
+  
   .gamefi-grid {
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: clamp(10px, 1vw, 15px);
+    padding: 0;
   }
-
+  
   .gamefi-card {
-    text-align: center;
+    min-width: 100%;
+    max-width: 100%;
+    width: 100%;
+  }
+  
+  .card-image {
+    height: clamp(100px, 12vw, 140px);
+    width: 100%;
+  }
+  
+  .pagination-dots {
+    gap: clamp(4px, 0.8vw, 8px);
+    margin-top: clamp(10px, 2vw, 20px);
+  }
+  
+  .pagination-dot {
+    width: clamp(4px, 0.8vw, 8px);
+    height: clamp(4px, 0.8vw, 8px);
+  }
+  
+  .pagination-dot.active::before {
+    width: clamp(2px, 0.4vw, 4px);
+    height: clamp(2px, 0.4vw, 4px);
   }
 }
+
+/* Very small screens */
+@media (max-width: 320px) {
+  .gamefi-card {
+    padding: clamp(8px, 1.5vw, 12px);
+  }
+  
+  .card-image {
+    height: clamp(80px, 10vw, 120px);
+  }
+  
+  .pagination-dot {
+    width: clamp(3px, 0.6vw, 6px);
+    height: clamp(3px, 0.6vw, 6px);
+  }
+}
+
+/* Animation for smooth transitions */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.gamefi-card {
+  animation: slideIn 0.6s ease-out;
+}
+
+/* Hover effects for pagination dots */
+.pagination-dot:focus {
+  outline: 2px solid #FFD700;
+  outline-offset: 2px;
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  .gamefi-slider {
+    transition: none;
+  }
+  
+  .gamefi-card {
+    animation: none;
+  }
+  
+  .pagination-dot {
+    transition: none;
+  }
+}
+  
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .gamefi-card {
+    border-color: #FFD700;
+  }
+  
+  .pagination-dot {
+    border-color: #FFD700;
+  }
+  
+  .pagination-dot.active {
+    background: #FFD700;
+    border-color: #000;
+  }
+}
+

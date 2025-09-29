@@ -11,3 +11,169 @@ section {
   margin: 0;
   padding: 0;
 }
+
+/* Layout tổng thể */
+.news-section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.news-container {
+  width: 100%;
+  max-width: 1200px;
+  padding: clamp(16px, 2vw, 24px) clamp(12px, 2vw, 16px);
+}
+
+.news-title {
+  color: #e7e7e7;
+  font-size: clamp(1.1rem, 2.2vw, 1.6rem);
+  letter-spacing: 0.5px;
+  margin: 0 0 16px 0;
+}
+
+.news-layout {
+  display: grid;
+  grid-template-columns: 1fr minmax(260px, 420px);
+  gap: clamp(12px, 2.2vw, 24px);
+}
+
+/* Khối trái */
+.news-left {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.news-hero img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.news-meta {
+  /* Container */
+  /* Auto layout */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: clamp(12px, 2vw, 24.4px) clamp(12px, 2vw, 20px) 0 0;
+  gap: 11.69px;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 2;
+  align-self: stretch;
+  flex-grow: 0;
+  z-index: 1;
+
+  color: #d9d9d9;
+}
+
+.news-meta-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.news-date {
+  margin: 0 0 6px 0;
+  font-family: "Gothic A1", Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: clamp(12px, 1.2vw, 14px);
+  line-height: 100%;
+  letter-spacing: 3px;
+  vertical-align: middle;
+  background: #d0b285;
+  color: #1a1a1a;
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 4px;
+}
+
+.news-heading {
+  margin: 0 0 8px 0;
+  font-family: "Beaufort for LOL", Georgia, "Times New Roman", serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: clamp(1.25rem, 3.5vw, 2rem);
+  line-height: 110%;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  background: linear-gradient(90deg, #feffbc 0%, #ffc671 153.8%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.news-desc {
+  margin: 0;
+  font-family: "Gothic A1", Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: clamp(0.95rem, 1.2vw, 1rem);
+  line-height: 160%;
+  letter-spacing: 0;
+  vertical-align: middle;
+  background: rgba(255, 255, 255, 0.65);
+  color: #0f0f0f;
+  padding: 10px 12px;
+  border-radius: 6px;
+}
+
+/* Cột phải: 3 thẻ chồng nhau */
+.news-right {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.news-card {
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.news-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.news-card-content {
+  padding: 10px 12px 12px;
+}
+
+.news-card-title {
+  margin: 0 0 4px 0;
+  color: #fff;
+  font-size: clamp(0.9rem, 1.2vw, 1rem);
+}
+
+.news-card-date {
+  margin: 0;
+  color: #bfbfbf;
+  font-size: clamp(0.75rem, 1.1vw, 0.85rem);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .news-layout {
+    grid-template-columns: 1fr; /* Xuống 1 cột trên tablet/mobile */
+  }
+  .news-right {
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 12px;
+  }
+  .news-card { min-width: min(80vw, 320px); }
+}
+
+@media (max-width: 480px) {
+  .news-container {
+    padding: clamp(12px, 4vw, 18px) clamp(10px, 4vw, 14px);
+  }
+  .news-title { margin-bottom: 12px; }
+  .news-desc { line-height: 150%; }
+}

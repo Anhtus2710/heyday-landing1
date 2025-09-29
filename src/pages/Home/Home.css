@@ -1,61 +1,90 @@
-/* Home.css */
+/* ==========================
+   Home.css – Fully Responsive & Balanced
+   ========================== */
 
+/* CSS Custom Properties for consistent scaling */
+:root {
+  --hero-font-size: clamp(2.5rem, 8vw, 4.5rem);
+  --hero-font-size-tablet: clamp(2.2rem, 7vw, 3.8rem);
+  --hero-font-size-mobile: clamp(1.8rem, 6vw, 3rem);
+  --hero-font-size-small: clamp(1.5rem, 5vw, 2.5rem);
+  
+  --button-font-size: clamp(0.9rem, 1.4vw, 1.1rem);
+  --button-min-width: clamp(180px, 20vw, 220px);
+  --button-min-height: clamp(50px, 8vh, 60px);
+  
+  --social-icon-size: clamp(40px, 6vw, 60px);
+  --platform-icon-width: clamp(60px, 12vw, 80px);
+  --platform-icon-height: clamp(50px, 10vw, 65px);
+  
+  --section-padding: clamp(20px, 5vw, 40px);
+  --gap-small: clamp(10px, 2vw, 20px);
+  --gap-medium: clamp(15px, 3vw, 24px);
+}
+
+/* Home section - Full viewport with proper spacing */
 .home-section {
   position: relative;
-  width: 100vw;
+  width: 100%;
+  min-height: 100vh;
   height: 100vh;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: var(--section-padding);
+  box-sizing: border-box;
 }
 
-/* Hero Center Content */
+/* Hero Center Content - Centered and responsive */
 .hero-center {
   position: relative;
   z-index: 10;
   text-align: center;
-  margin-top: 31%; /* Reset margin */
   display: flex;
   flex-direction: column;
-  align-items: center;
+  /* align-items: center; */
   justify-content: center;
+  gap: var(--gap-small);
+  max-width: 90%;
+  width: 100%;
+  flex: 1;
+  margin-top: auto;
 }
 
-.hero-sub {
+/* Hero title - Responsive and balanced */
+.hero-title {
   font-family: "Cinzel", "Times New Roman", serif;
   font-style: normal;
   font-weight: 400;
-  font-size: 60px !important; /* Thêm !important để override */
-  line-height: 100%;
+  font-size: var(--hero-font-size);
+  line-height: 1.1;
   text-align: center;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  margin: 0 0 40px 0;
-
-  /* Thêm fallback color trước gradient */
-  color: #feffbc !important;
-
+  margin: 0 0 30px 0;
+  
   /* Gradient text */
   background: linear-gradient(90deg, #feffbc 0%, #ffc671 153.8%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-
-  white-space: nowrap;
-
-  /* Debug - xóa dòng này sau khi test */
-  /* border: 2px solid red; */
+  color: #feffbc;
+  white-space: normal;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+  
+  /* Smooth transitions for window resizing */
+  transition: font-size 0.3s ease, transform 0.3s ease;
 }
 
+/* Hero Button - Responsive and interactive */
 .btn-hero {
   background: url("/assets/btn/btn-hero.png") center/contain no-repeat;
-  background-size: 100% 100%;
   border: none;
   color: #d4af37;
-  padding: 20px 45px;
-  font-size: 1.1rem;
+  font-size: var(--button-font-size);
   font-weight: bold;
   text-transform: uppercase;
   letter-spacing: 2px;
@@ -63,8 +92,15 @@
   font-family: "Cinzel", "Arial", sans-serif;
   transition: all 0.3s ease;
   text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
-  min-width: 200px;
-  min-height: 60px;
+  min-width: var(--button-min-width);
+  min-height: var(--button-min-height);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .btn-hero:hover {
@@ -74,87 +110,307 @@
 }
 
 .btn-hero:active {
-  transform: translateY(-1px) scale(1.02);
+  transform: scale(0.98);
 }
-/* Social Icons */
+
+/* Social Icons - Responsive positioning */
 .social-icons {
   position: absolute;
-  left: 40px;
+  left: var(--section-padding);
   top: 50%;
   transform: translateY(-50%);
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  z-index: 10;
+  gap: var(--gap-small);
+  z-index: 20;
+  transition: all 0.3s ease;
 }
 
 .social-icons img {
-  width: 90px;
-  height: 90px;
-  /* filter: brightness(0) invert(1); */
-  transition: filter 0.3s ease;
+  width: var(--social-icon-size);
+  height: var(--social-icon-size);
+  transition: all 0.3s ease;
+  object-fit: contain;
 }
 
-/* Animation cho floating effect nếu cần */
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0px) rotate(0deg);
-  }
-  50% {
-    transform: translateY(-20px) rotate(180deg);
-  }
+.social-icons a {
+  display: block;
+  transition: transform 0.3s ease;
 }
 
-/* Responsive Design */
+.social-icons a:hover {
+  transform: scale(1.1);
+}
+
+.social-icons a:hover img {
+  filter: brightness(1.2);
+}
+
+/* Platforms container - Responsive and balanced */
+.platforms {
+  position: absolute;
+  bottom: var(--section-padding);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: var(--gap-medium);
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  pointer-events: auto;
+  max-width: 90%;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+/* Platform item - Clean and responsive */
+.platform-item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  backdrop-filter: none;
+  cursor: default;
+  transition: transform 0.3s ease;
+}
+
+.platform-item:hover {
+  transform: scale(1.05);
+}
+
+/* Platform icon size - Responsive */
+.platform-item img {
+  width: var(--platform-icon-width);
+  height: var(--platform-icon-height);
+  filter: none;
+  object-fit: contain;
+  transition: all 0.3s ease;
+}
+
+.platform-item:hover img {
+  filter: brightness(1.1);
+}
+
+/* ========== Responsive Breakpoints ========== */
+
+/* Large tablets and small desktops */
 @media (max-width: 1200px) {
-  .hero-center::before {
-    font-size: 3.5rem;
-    top: -100px;
+  .hero-title {
+    font-size: var(--hero-font-size-tablet);
+  }
+  
+  .social-icons {
+    left: 15px;
+  }
+  
+  .platforms {
+    gap: 20px;
+    bottom: 15px;
   }
 }
 
+/* Tablets */
+@media (max-width: 1024px) {
+  .home-section {
+    padding: 15px;
+  }
+  
+  .hero-title {
+    font-size: var(--hero-font-size-tablet);
+    margin-bottom: 25px;
+  }
+  
+  .social-icons {
+    left: 15px;
+  }
+  
+  .social-icons img {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .platforms {
+    gap: 18px;
+    bottom: 15px;
+  }
+  
+  .platform-item img {
+    width: 70px;
+    height: 55px;
+  }
+}
+
+/* Mobile landscape and small tablets */
 @media (max-width: 768px) {
-  .social-icons {
-    left: 20px;
+  .home-section {
+    padding: 12px;
+    padding-bottom: 100px;
   }
-
-  .hero-center::before {
-    font-size: 2.8rem;
-    top: -80px;
-    letter-spacing: 4px;
-  }
-  .btn-hero {
-    padding: 15px 35px;
-    font-size: 1rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .hero-center::before {
-    font-size: 2.2rem;
-    top: -60px;
-  }
-
-  .social-icons {
+  
+  .hero-center {
     gap: 15px;
   }
-
-  .social-icons a {
+  
+  .hero-title {
+    font-size: var(--hero-font-size-mobile);
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    max-width: 92vw;
+  }
+  
+  .btn-hero {
+    min-width: 200px;
+    min-height: 55px;
+    font-size: 1rem;
+  }
+  
+  .social-icons {
+    left: 10px;
+    gap: 12px;
+  }
+  
+  .social-icons img {
     width: 45px;
     height: 45px;
   }
-
-  .social-icons img {
-    width: 20px;
-    height: 20px;
+  
+  .platforms {
+    gap: 15px;
+    flex-wrap: wrap;
+    bottom: 20px;
+  }
+  
+  .platform-item img {
+    width: 60px;
+    height: 45px;
   }
 }
 
-.platforms {
-  margin-top: 50px;
-  display: flex;
-  gap: 20px;
-  justify-content: center;
-  flex-wrap: wrap;
+/* Mobile portrait */
+@media (max-width: 480px) {
+  .home-section {
+    padding: 10px;
+    padding-bottom: 90px;
+  }
+  
+  .hero-center {
+    gap: 12px;
+    max-width: 95%;
+  }
+  
+  .hero-title {
+    font-size: var(--hero-font-size-small);
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+    max-width: 94vw;
+  }
+  
+  .btn-hero {
+    min-width: 180px;
+    min-height: 50px;
+    font-size: 0.9rem;
+  }
+  
+  .social-icons {
+    left: 8px;
+    gap: 10px;
+  }
+  
+  .social-icons img {
+    width: 35px;
+    height: 35px;
+  }
+  
+  .platforms {
+    bottom: 15px;
+    gap: 12px;
+  }
+  
+  .platform-item img {
+    width: 50px;
+    height: 35px;
+  }
+}
+
+/* Very small screens */
+@media (max-width: 320px) {
+  .hero-title {
+    font-size: clamp(1.2rem, 4vw, 2rem);
+  }
+  
+  .btn-hero {
+    min-width: 160px;
+    min-height: 45px;
+    font-size: 0.8rem;
+  }
+  
+  .social-icons img {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .platform-item img {
+    width: 40px;
+    height: 30px;
+  }
+}
+
+/* Landscape orientation adjustments */
+@media (max-height: 600px) and (orientation: landscape) {
+  .home-section {
+    padding-bottom: 60px;
+  }
+  
+  .hero-center {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  
+  .hero-title {
+    font-size: clamp(1.5rem, 4vh, 2.5rem);
+    margin-bottom: 15px;
+  }
+  
+  .platforms {
+    bottom: 10px;
+  }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .hero-title {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .hero-title,
+  .btn-hero,
+  .social-icons,
+  .platforms,
+  .platform-item,
+  .social-icons a,
+  .social-icons img,
+  .platform-item img {
+    transition: none;
+  }
+  
+  .btn-hero:hover {
+    transform: none;
+  }
+  
+  .social-icons a:hover {
+    transform: none;
+  }
+  
+  .platform-item:hover {
+    transform: none;
+  }
 }

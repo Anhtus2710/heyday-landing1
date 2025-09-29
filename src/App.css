@@ -7,6 +7,10 @@
 
 html {
   scroll-behavior: smooth;
+  /* Tối ưu cho thu phóng */
+  text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
 }
 
 body {
@@ -15,6 +19,18 @@ body {
   overflow-x: hidden;
   line-height: 1.6;
   background: #000;
+  /* Đảm bảo font size tối thiểu */
+  font-size: clamp(14px, 1rem, 18px);
+}
+
+/* Fluid media */
+img, video, canvas, svg {
+  max-width: 100%;
+  height: auto;
+  /* Tránh pixelated khi zoom */
+  image-rendering: auto;
+  image-rendering: crisp-edges;
+  image-rendering: -webkit-optimize-contrast;
 }
 
 /* Background chung */
@@ -22,50 +38,67 @@ body {
   background: url("/assets/image/picture.png") no-repeat center top;
   background-size: cover;
   background-attachment: scroll;
+  /* Tối ưu hiệu suất khi zoom */
+  will-change: transform;
 }
 
-/* Navbar */
+/* ===================== */
+/* 📱 NAVBAR RESPONSIVE */
+/* ===================== */
 .navbar {
   position: fixed;
   top: 0;
   width: 100%;
-  padding: 15px 25px;
+  /* Padding responsive cho zoom */
+  padding: clamp(10px, 1.5vw, 20px) clamp(15px, 3vw, 40px);
   display: flex;
   justify-content: space-between;
   align-items: center;
   z-index: 1000;
   background: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(6px);
+  /* Đảm bảo navbar không bị vỡ layout khi zoom */
+  min-height: clamp(50px, 8vh, 80px);
 }
 
 .navbar ul {
   list-style: none;
   display: flex;
-  gap: 25px;
+  gap: clamp(10px, 2.5vw, 30px);
+  flex-wrap: wrap;
 }
 
 .navbar ul li a {
   text-decoration: none;
   color: #fff;
   font-weight: 500;
+  /* Font size responsive cho zoom */
+  font-size: clamp(12px, 1.2vw, 16px);
   transition: color 0.3s;
+  /* Đảm bảo vùng click đủ lớn */
+  padding: clamp(5px, 1vh, 10px) clamp(8px, 1.5vw, 15px);
+  border-radius: 4px;
+  display: inline-block;
 }
 
 .navbar ul li a:hover {
   color: #FFD700;
+  background: rgba(255, 215, 0, 0.1);
 }
 
-/* Scroll container */
+/* ===================== */
+/* 📱 SECTION RESPONSIVE */
+/* ===================== */
 .scroll-container {
   width: 100%;
   overflow-x: hidden;
 }
 
-/* Section layout */
 .section {
   min-height: 100vh;
   width: 100%;
-  padding: 120px 40px;
+  /* Padding thông minh cho mọi zoom level */
+  padding: clamp(60px, 10vh, 120px) clamp(20px, 5vw, 60px);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -74,135 +107,278 @@ body {
   position: relative;
 }
 
-/* Background parallax effect */
+/* Background parallax effect - tối ưu cho zoom */
 .home-section { background-position: center top; }
-.about-section { background-position: center -100vh; }
-.gameplay-section { background-position: center -200vh; }
-.mystical-section { background-position: center -300vh; }
-.auction-section { background-position: center -400vh; }
-.gamefi-section { background-position: center -500vh; }
-.news-section { background-position: center -600vh; }
-.studio-section { background-position: center -700vh; }
+.about-section { background-position: center calc(-100vh + 10vh); }
+.gameplay-section { background-position: center calc(-200vh + 20vh); }
+.mystical-section { background-position: center calc(-300vh + 30vh); }
+.auction-section { background-position: center calc(-400vh + 40vh); }
+.gamefi-section { background-position: center calc(-500vh + 50vh); }
+.news-section { background-position: center calc(-600vh + 60vh); }
+.studio-section { background-position: center calc(-700vh + 70vh); }
 
-/* Typography */
+/* ===================== */
+/* 📱 TYPOGRAPHY ZOOM-FRIENDLY */
+/* ===================== */
 .section h1,
 .section h2 {
-  font-size: clamp(2rem, 5vw, 3rem);
-  margin-bottom: 20px;
+  /* Font size linh hoạt cho mọi zoom level */
+  font-size: clamp(1.5rem, 4.5vw + 0.5rem, 4rem);
+  margin-bottom: clamp(15px, 3vh, 30px);
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: clamp(1px, 0.15vw, 3px);
   background: linear-gradient(90deg, #FEFFBC 0%, #FFD700 50%, #FFC671 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  /* Tránh text bị vỡ */
+  word-wrap: break-word;
+  hyphens: auto;
 }
 
 .section p {
-  max-width: 800px;
+  max-width: min(800px, 90vw);
   margin: 0 auto;
-  font-size: 1.1rem;
-  line-height: 1.7;
+  /* Font size tối ưu cho đọc ở mọi zoom */
+  font-size: clamp(14px, 1.1rem + 0.2vw, 20px);
+  line-height: clamp(1.5, 1.7, 1.9);
   color: #ddd;
+  /* Đảm bảo text dễ đọc */
+  text-align: left;
+  text-align-last: center;
 }
 
-/* Footer */
+/* ===================== */
+/* 📱 FOOTER RESPONSIVE */
+/* ===================== */
 .footer {
-  padding: 30px 20px;
+  padding: clamp(20px, 4vh, 40px) clamp(15px, 3vw, 30px);
   text-align: center;
   background: rgba(0, 0, 0, 0.85);
-  font-size: 0.9rem;
+  font-size: clamp(12px, 1rem, 16px);
   color: #aaa;
 }
 
 .footer a {
   color: #FFD700;
-  margin: 0 10px;
+  margin: clamp(5px, 1vw, 15px);
   text-decoration: none;
+  /* Vùng click đủ lớn */
+  padding: clamp(3px, 0.5vh, 8px);
+  border-radius: 3px;
+  display: inline-block;
 }
 
 .footer a:hover {
   text-decoration: underline;
+  background: rgba(255, 215, 0, 0.1);
 }
 
 /* ===================== */
-/* 📱 Responsive Mobile */
+/* 🔍 ZOOM LEVEL SPECIFIC */
 /* ===================== */
 
-/* Tablet (dưới 1024px) */
-@media (max-width: 1024px) {
+/* Zoom 150% - 200% */
+@media (min-resolution: 1.5dppx) and (max-resolution: 2dppx) {
+  .navbar {
+    padding: clamp(8px, 1.2vw, 16px) clamp(12px, 2.5vw, 32px);
+  }
+  
   .section {
-    padding: 100px 30px;
+    padding: clamp(50px, 8vh, 100px) clamp(18px, 4.5vw, 50px);
   }
-
-  .navbar ul {
-    gap: 15px;
-  }
-
+  
   .section h1,
   .section h2 {
-    font-size: clamp(1.8rem, 4vw, 2.5rem);
-  }
-
-  .section p {
-    font-size: 1rem;
-    max-width: 90%;
+    font-size: clamp(1.3rem, 4vw + 0.3rem, 3.5rem);
   }
 }
 
-/* Mobile (dưới 768px) */
-@media (max-width: 768px) {
+/* Zoom 200%+ (High DPI) */
+@media (min-resolution: 2dppx) {
+  .navbar {
+    padding: clamp(6px, 1vw, 14px) clamp(10px, 2vw, 28px);
+  }
+  
+  .section {
+    padding: clamp(40px, 7vh, 90px) clamp(16px, 4vw, 45px);
+  }
+  
+  .section h1,
+  .section h2 {
+    font-size: clamp(1.2rem, 3.5vw + 0.2rem, 3rem);
+  }
+  
+  .navbar ul li a {
+    font-size: clamp(11px, 1.1vw, 15px);
+  }
+}
+
+/* ===================== */
+/* 📱 BREAKPOINT RESPONSIVE */
+/* ===================== */
+
+/* Large Desktop (1200px+) - Zoom tối ưu */
+@media (min-width: 1200px) {
+  .section {
+    padding: clamp(80px, 8vh, 140px) clamp(40px, 4vw, 80px);
+  }
+  
+  .section h1,
+  .section h2 {
+    font-size: clamp(2.5rem, 3.5vw, 4.5rem);
+  }
+}
+
+/* Desktop (992px - 1199px) */
+@media (max-width: 1199px) and (min-width: 992px) {
+  .navbar ul {
+    gap: clamp(12px, 2vw, 25px);
+  }
+  
+  .section p {
+    font-size: clamp(15px, 1.2rem, 18px);
+  }
+}
+
+/* Tablet (768px - 991px) */
+@media (max-width: 991px) and (min-width: 768px) {
+  .navbar {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .navbar ul {
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .section {
+    padding: clamp(70px, 10vh, 110px) clamp(25px, 5vw, 45px);
+  }
+  
+  .section h1,
+  .section h2 {
+    font-size: clamp(1.8rem, 5vw, 3rem);
+  }
+}
+
+/* Mobile Large (576px - 767px) */
+@media (max-width: 767px) and (min-width: 576px) {
   .navbar {
     flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-    padding: 10px 20px;
+    padding: clamp(8px, 2vh, 15px) clamp(15px, 4vw, 25px);
   }
-
+  
   .navbar ul {
-    flex-direction: column;
-    align-items: flex-start;
-    width: 100%;
-    gap: 8px;
+    gap: clamp(8px, 2vw, 15px);
   }
-
+  
   .section {
-    padding: 80px 20px;
+    padding: clamp(60px, 12vh, 100px) clamp(20px, 6vw, 35px);
   }
-
+  
   .section h1,
   .section h2 {
-    font-size: clamp(1.6rem, 5vw, 2rem);
-    letter-spacing: 1px;
-  }
-
-  .section p {
-    font-size: 0.95rem;
-    line-height: 1.6;
-  }
-
-  .footer {
-    font-size: 0.8rem;
-    padding: 20px 10px;
+    font-size: clamp(1.5rem, 6vw, 2.5rem);
+    letter-spacing: clamp(0.5px, 0.1vw, 2px);
   }
 }
 
-/* Extra Small (dưới 480px) */
-@media (max-width: 480px) {
-  .section {
-    padding: 60px 15px;
+/* Mobile (max 575px) */
+@media (max-width: 575px) {
+  .navbar {
+    flex-direction: column;
+    padding: clamp(5px, 1.5vh, 12px) clamp(10px, 3vw, 20px);
+    min-height: auto;
   }
-
+  
+  .navbar ul {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: clamp(5px, 1.5vw, 12px);
+  }
+  
+  .navbar ul li a {
+    font-size: clamp(11px, 3vw, 14px);
+    padding: clamp(4px, 1vh, 8px) clamp(6px, 2vw, 12px);
+  }
+  
+  .section {
+    padding: clamp(50px, 15vh, 90px) clamp(15px, 7vw, 30px);
+    min-height: auto;
+  }
+  
   .section h1,
   .section h2 {
-    font-size: 1.4rem;
+    font-size: clamp(1.3rem, 7vw, 2rem);
+    margin-bottom: clamp(10px, 2vh, 20px);
   }
-
+  
   .section p {
-    font-size: 0.9rem;
+    font-size: clamp(13px, 4vw, 16px);
+    line-height: clamp(1.4, 1.6, 1.8);
+    text-align: center;
   }
+  
+  .footer {
+    padding: clamp(15px, 3vh, 25px) clamp(10px, 4vw, 20px);
+    font-size: clamp(10px, 3vw, 14px);
+  }
+  
+  .footer a {
+    margin: clamp(3px, 1.5vw, 8px);
+    padding: clamp(2px, 0.5vh, 5px);
+  }
+}
 
+/* ===================== */
+/* 🎯 ACCESSIBILITY & PERFORMANCE */
+/* ===================== */
+
+/* Reduced motion cho người nhạy cảm */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  
   .navbar ul li a {
-    font-size: 0.9rem;
+    transition: none;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .section h1,
+  .section h2 {
+    background: #FFD700;
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+  
+  .navbar {
+    background: rgba(0, 0, 0, 0.9);
+  }
+}
+
+/* Dark mode optimization */
+@media (prefers-color-scheme: dark) {
+  .section p {
+    color: #e5e5e5;
+  }
+}
+
+/* Container queries support (modern browsers) */
+@supports (container-type: inline-size) {
+  .section {
+    container-type: inline-size;
+  }
+  
+  @container (max-width: 600px) {
+    .section h1,
+    .section h2 {
+      font-size: clamp(1.2rem, 8cqw, 2rem);
+    }
   }
 }
