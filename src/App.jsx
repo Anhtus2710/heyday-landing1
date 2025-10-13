@@ -16,34 +16,32 @@ export default function App() {
   return (
     <>
       <Navbar />
-      <div className="landing-bg">
-        <main className="scroll-container">
-          <section id="home" className="section home-section">
-            <Home />
-          </section>
-          <section id="about" className="section about-section">
-            <About />
-          </section>
-          <section id="gameplay" className="section gameplay-section">
-            <Gameplay />
-          </section>
-          <section id="mystical" className="section mystical-section">
-            <MysticalStone />
-          </section>
-          <section id="auction" className="section auction-section">
-            <AuctionHouse />
-          </section>
-          <section id="gamefi" className="section gamefi-section">
-            <GameFi />
-          </section>
-          <section id="news" className="section news-section">
-            <News />
-          </section>
-          <section id="studio" className="section studio-section">
-            <Studio />
-          </section>
-        </main>
-      </div>
+      <main className="scroll-container">
+        <section id="home" className="section home-section">
+          <Home />
+        </section>
+        <section id="about" className="section about-section">
+          <About />
+        </section>
+        <section id="gameplay" className="section gameplay-section">
+          <Gameplay />
+        </section>
+        <section id="mystical" className="section mystical-section">
+          <MysticalStone />
+        </section>
+        <section id="auction" className="section auction-section">
+          <AuctionHouse />
+        </section>
+        <section id="gamefi" className="section gamefi-section">
+          <GameFi />
+        </section>
+        <section id="news" className="section news-section">
+          <News />
+        </section>
+        <section id="studio" className="section studio-section">
+          <Studio />
+        </section>
+      </main>
       <Footer />
     </>
   );

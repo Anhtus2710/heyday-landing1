@@ -1,416 +1,279 @@
 /* ==========================
-   Home.css – Fully Responsive & Balanced
+   Home.css – Đã được cập nhật
    ========================== */
 
-/* CSS Custom Properties for consistent scaling */
-:root {
-  --hero-font-size: clamp(2.5rem, 8vw, 4.5rem);
-  --hero-font-size-tablet: clamp(2.2rem, 7vw, 3.8rem);
-  --hero-font-size-mobile: clamp(1.8rem, 6vw, 3rem);
-  --hero-font-size-small: clamp(1.5rem, 5vw, 2.5rem);
-  
-  --button-font-size: clamp(0.9rem, 1.4vw, 1.1rem);
-  --button-min-width: clamp(180px, 20vw, 220px);
-  --button-min-height: clamp(50px, 8vh, 60px);
-  
-  --social-icon-size: clamp(40px, 6vw, 60px);
-  --platform-icon-width: clamp(60px, 12vw, 80px);
-  --platform-icon-height: clamp(50px, 10vw, 65px);
-  
-  --section-padding: clamp(20px, 5vw, 40px);
-  --gap-small: clamp(10px, 2vw, 20px);
-  --gap-medium: clamp(15px, 3vw, 24px);
-}
+/* Import Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap");
 
-/* Home section - Full viewport with proper spacing */
+/* Biến CSS cục bộ cho Home (nếu có, nhưng sẽ ưu tiên dùng biến toàn cục từ App.css) */
+/* :root {
+  --section-padding: clamp(20px, 4vw, 60px); 
+} */
+
 .home-section {
-  position: relative;
+  position: relative; /* Rất quan trọng để định vị các phần tử con */
   width: 100%;
   min-height: 100vh;
-  height: 100vh;
+  height: 100vh; /* Đảm bảo chiều cao đầy đủ để định vị các phần tử */
   overflow: hidden;
-  display: flex;
+  display: flex; /* Dùng flexbox để căn giữa nội dung chính */
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: var(--section-padding);
-  box-sizing: border-box;
+  padding-top: var(--navbar-height); /* Đảm bảo nội dung không bị Navbar che */
+  box-sizing: border-box; /* Tính toán padding vào kích thước */
 }
 
-/* Hero Center Content - Centered and responsive */
+/* Hero Center - Khối nội dung chính (Tiêu đề & Nút) */
 .hero-center {
-  position: relative;
-  z-index: 10;
-  text-align: center;
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
-  justify-content: center;
-  gap: var(--gap-small);
-  max-width: 90%;
-  width: 100%;
-  flex: 1;
-  margin-top: auto;
-}
-
-/* Hero title - Responsive and balanced */
-.hero-title {
-  font-family: "Cinzel", "Times New Roman", serif;
-  font-style: normal;
-  font-weight: 400;
-  font-size: var(--hero-font-size);
-  line-height: 1.1;
+  align-items: center;
+  gap: clamp(20px, 3vh, 40px); /* Khoảng cách giữa các phần tử */
   text-align: center;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  margin: 0 0 30px 0;
-  
-  /* Gradient text */
-  background: linear-gradient(90deg, #feffbc 0%, #ffc671 153.8%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  color: #feffbc;
-  white-space: normal;
-  word-break: break-word;
-  overflow-wrap: anywhere;
-  
-  /* Smooth transitions for window resizing */
-  transition: font-size 0.3s ease, transform 0.3s ease;
+  z-index: 10; /* Đảm bảo nằm trên background */
+  position: relative; /* Nếu bạn muốn thêm hiệu ứng parallax cho khối này */
 }
 
-/* Hero Button - Responsive and interactive */
+.hero-title {
+  font-family: "Cinzel", serif;
+  font-size: clamp(3rem, 8vw + 1rem, 7rem); /* Kích thước chữ lớn hơn, fluid */
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0 0 20px rgba(255, 215, 0, 0.7), 0 0 40px rgba(255, 215, 0, 0.4);
+  line-height: 1; /* Điều chỉnh line-height cho chữ lớn */
+  margin-bottom: 0; /* Đã có gap ở hero-center */
+  white-space: nowrap; /* Ngăn không cho chữ xuống dòng nếu không cần */
+}
+
+/* Thêm style cho "RISE & CONQUER" nếu đó là một phần tử riêng biệt */
+.hero-title + p { /* Nếu "RISE & CONQUER" là một thẻ p ngay sau h1 */
+  font-family: "Cinzel", serif;
+  font-size: clamp(1.5rem, 3vw + 0.5rem, 3.5rem);
+  font-weight: 400;
+  color: #f0e68c;
+  text-shadow: 0 0 10px rgba(240, 230, 140, 0.5);
+  margin-top: -10px; /* Điều chỉnh khoảng cách nếu cần */
+}
+
 .btn-hero {
   background: url("/assets/btn/btn-hero.png") center/contain no-repeat;
+  background-size: 100% 100%; /* Đảm bảo hình nền phủ hết nút */
   border: none;
-  color: #d4af37;
-  font-size: var(--button-font-size);
+  color: #d4af37; /* Màu chữ vàng đồng */
+  min-width: clamp(180px, 20vw, 280px); /* Chiều rộng linh hoạt */
+  min-height: clamp(50px, 7vh, 70px); /* Chiều cao linh hoạt */
+  font-size: clamp(12px, 1.2vw, 16px);
   font-weight: bold;
   text-transform: uppercase;
   letter-spacing: 2px;
   cursor: pointer;
   font-family: "Cinzel", "Arial", sans-serif;
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease, filter 0.3s ease, box-shadow 0.3s ease;
   text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
-  min-width: var(--button-min-width);
-  min-height: var(--button-min-height);
-  display: flex;
+  display: flex; /* Dùng flex để căn giữa text nếu cần */
   align-items: center;
   justify-content: center;
-  padding: 0;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
+  position: relative;
+  z-index: 10;
 }
 
 .btn-hero:hover {
-  transform: translateY(-2px) scale(1.05);
-  text-shadow: 0 0 15px rgba(212, 175, 55, 0.8);
-  filter: brightness(1.1);
+  transform: translateY(-3px) scale(1.05);
+  text-shadow: 0 0 15px rgba(212, 175, 55, 0.9);
+  filter: brightness(1.15) drop-shadow(0 6px 18px rgba(212, 175, 55, 0.5));
+  box-shadow: 0 0 25px rgba(212, 175, 55, 0.7);
 }
 
 .btn-hero:active {
-  transform: scale(0.98);
+  transform: translateY(0) scale(1.02);
+  filter: brightness(1);
+  box-shadow: none;
 }
 
-/* Social Icons - Responsive positioning */
+/* Social Icons - Bên trái */
 .social-icons {
-  position: absolute;
-  left: var(--section-padding);
-  top: 50%;
-  transform: translateY(-50%);
+  position: absolute; /* Quan trọng: Định vị tuyệt đối */
+  left: clamp(20px, 4vw, 80px); /* Khoảng cách từ lề trái */
+  top: 50%; /* Bắt đầu từ giữa theo chiều dọc */
+  transform: translateY(-50%); /* Dịch lên 50% chiều cao của chính nó để căn giữa */
   display: flex;
-  flex-direction: column;
-  gap: var(--gap-small);
-  z-index: 20;
-  transition: all 0.3s ease;
-}
-
-.social-icons img {
-  width: var(--social-icon-size);
-  height: var(--social-icon-size);
-  transition: all 0.3s ease;
-  object-fit: contain;
+  flex-direction: column; /* Xếp dọc */
+  gap: clamp(15px, 2.5vh, 25px); /* Khoảng cách giữa các icon */
+  z-index: 10;
 }
 
 .social-icons a {
-  display: block;
-  transition: transform 0.3s ease;
+  display: block; /* Đảm bảo mỗi icon chiếm một hàng */
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.social-icons img {
+  width: clamp(35px, 5vw, 55px); /* Kích thước icon linh hoạt */
+  height: auto;
+  filter: drop-shadow(0 0 8px rgba(0, 0, 0, 0.6));
 }
 
 .social-icons a:hover {
-  transform: scale(1.1);
+  transform: translateX(5px) scale(1.1); /* Hiệu ứng khi hover */
+  filter: brightness(1.2) drop-shadow(0 0 12px rgba(255, 215, 0, 0.8));
 }
 
-.social-icons a:hover img {
-  filter: brightness(1.2);
-}
-
-/* Platforms container - Responsive and balanced */
+/* Platforms - Bên dưới */
 .platforms {
+  position: absolute; /* Quan trọng: Định vị tuyệt đối */
+  bottom: clamp(20px, 4vw, 40px); /* Khoảng cách từ lề dưới */
+  left: 50%; /* Bắt đầu từ giữa theo chiều ngang */
+  transform: translateX(-50%); /* Dịch sang trái 50% chiều rộng của chính nó để căn giữa */
+  display: flex;
+  flex-wrap: wrap; /* Cho phép các icon xuống dòng trên màn hình nhỏ */
+  justify-content: center; /* Căn giữa các icon */
+  gap: clamp(15px, 2.5vw, 30px); /* Khoảng cách giữa các icon */
+  z-index: 10;
+  width: 100%; /* Để justify-content hoạt động tốt */
+  max-width: 800px; /* Giới hạn chiều rộng trên màn hình lớn */
+  padding: 0 20px; /* Padding cho màn hình nhỏ */
+}
+
+.platforms::before {
+  content: 'Soon available on'; /* Text "Soon available on" */
   position: absolute;
-  bottom: var(--section-padding);
+  top: -25px; /* Đặt phía trên các icon */
   left: 50%;
   transform: translateX(-50%);
-  display: flex;
-  gap: var(--gap-medium);
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  z-index: 50;
-  pointer-events: auto;
-  max-width: 90%;
-  width: 100%;
-  transition: all 0.3s ease;
+  font-family: "Inter", sans-serif;
+  font-size: clamp(12px, 1vw, 15px);
+  color: rgba(255, 255, 255, 0.7);
+  white-space: nowrap;
+  letter-spacing: 1px;
 }
 
-/* Platform item - Clean and responsive */
+
 .platform-item {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-  background: transparent;
-  border: 0;
-  border-radius: 0;
-  box-shadow: none;
-  backdrop-filter: none;
-  cursor: default;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.platform-item img {
+  width: clamp(30px, 4vw, 50px); /* Kích thước icon linh hoạt */
+  height: auto;
+  filter: grayscale(80%) brightness(0.8) drop-shadow(0 0 5px rgba(0, 0, 0, 0.4)); /* Làm mờ nhẹ */
 }
 
 .platform-item:hover {
-  transform: scale(1.05);
+  transform: translateY(-5px) scale(1.1); /* Hiệu ứng khi hover */
+  filter: grayscale(0%) brightness(1) drop-shadow(0 0 10px rgba(255, 215, 0, 0.6)); /* Sáng hơn khi hover */
 }
 
-/* Platform icon size - Responsive */
-.platform-item img {
-  width: var(--platform-icon-width);
-  height: var(--platform-icon-height);
-  filter: none;
-  object-fit: contain;
-  transition: all 0.3s ease;
-}
+/* ===================== */
+/* 📱 RESPONSIVE ADJUSTMENTS */
+/* ===================== */
 
-.platform-item:hover img {
-  filter: brightness(1.1);
-}
-
-/* ========== Responsive Breakpoints ========== */
-
-/* Large tablets and small desktops */
-@media (max-width: 1200px) {
+@media (max-width: 992px) {
   .hero-title {
-    font-size: var(--hero-font-size-tablet);
+    font-size: clamp(2.5rem, 7vw + 1rem, 6rem);
   }
-  
-  .social-icons {
-    left: 15px;
+  .hero-title + p {
+    font-size: clamp(1.2rem, 2.5vw + 0.5rem, 3rem);
   }
-  
-  .platforms {
-    gap: 20px;
-    bottom: 15px;
-  }
-}
 
-/* Tablets */
-@media (max-width: 1024px) {
-  .home-section {
-    padding: 15px;
-  }
-  
-  .hero-title {
-    font-size: var(--hero-font-size-tablet);
-    margin-bottom: 25px;
-  }
-  
   .social-icons {
-    left: 15px;
+    left: clamp(15px, 3vw, 60px);
+    gap: clamp(12px, 2vh, 20px);
   }
-  
   .social-icons img {
-    width: 50px;
-    height: 50px;
+    width: clamp(30px, 4.5vw, 50px);
   }
-  
+
   .platforms {
-    gap: 18px;
-    bottom: 15px;
+    bottom: clamp(15px, 3vw, 30px);
+    gap: clamp(10px, 2vw, 25px);
   }
-  
+  .platforms::before {
+    top: -22px;
+  }
   .platform-item img {
-    width: 70px;
-    height: 55px;
+    width: clamp(25px, 3.5vw, 45px);
   }
 }
 
-/* Mobile landscape and small tablets */
 @media (max-width: 768px) {
-  .home-section {
-    padding: 12px;
-    padding-bottom: 100px;
-  }
-  
-  .hero-center {
-    gap: 15px;
-  }
-  
   .hero-title {
-    font-size: var(--hero-font-size-mobile);
-    letter-spacing: 2px;
-    margin-bottom: 20px;
-    max-width: 92vw;
+    font-size: clamp(2rem, 6vw + 1rem, 5rem);
   }
-  
+  .hero-title + p {
+    font-size: clamp(1rem, 2vw + 0.5rem, 2.5rem);
+  }
   .btn-hero {
-    min-width: 200px;
-    min-height: 55px;
-    font-size: 1rem;
+    min-width: clamp(160px, 22vw, 250px);
+    min-height: clamp(45px, 6vh, 60px);
+    font-size: clamp(11px, 1.4vw, 15px);
   }
-  
+
   .social-icons {
-    left: 10px;
-    gap: 12px;
+    left: clamp(10px, 2vw, 40px);
+    gap: clamp(10px, 1.8vh, 18px);
   }
-  
   .social-icons img {
-    width: 45px;
-    height: 45px;
+    width: clamp(28px, 4vw, 45px);
   }
-  
+
   .platforms {
-    gap: 15px;
-    flex-wrap: wrap;
-    bottom: 20px;
+    bottom: clamp(10px, 2vw, 25px);
+    gap: clamp(8px, 1.8vw, 20px);
   }
-  
+  .platforms::before {
+    top: -20px;
+    font-size: clamp(11px, 1.2vw, 14px);
+  }
   .platform-item img {
-    width: 60px;
-    height: 45px;
+    width: clamp(22px, 3vw, 40px);
   }
 }
 
-/* Mobile portrait */
 @media (max-width: 480px) {
   .home-section {
-    padding: 10px;
-    padding-bottom: 90px;
+    padding-top: var(--navbar-height); /* Đảm bảo vẫn có padding trên mobile */
   }
-  
-  .hero-center {
-    gap: 12px;
-    max-width: 95%;
-  }
-  
+
   .hero-title {
-    font-size: var(--hero-font-size-small);
-    letter-spacing: 1px;
-    margin-bottom: 15px;
-    max-width: 94vw;
+    font-size: clamp(1.8rem, 8vw, 4rem);
   }
-  
+  .hero-title + p {
+    font-size: clamp(0.9rem, 3vw, 2rem);
+  }
   .btn-hero {
-    min-width: 180px;
-    min-height: 50px;
-    font-size: 0.9rem;
+    min-width: clamp(140px, 25vw, 200px);
+    min-height: clamp(40px, 6vh, 50px);
+    font-size: clamp(10px, 1.5vw, 13px);
+    letter-spacing: 1px;
   }
-  
+
   .social-icons {
-    left: 8px;
+    left: 10px;
     gap: 10px;
   }
-  
-  .social-icons img {
-    width: 35px;
-    height: 35px;
-  }
-  
-  .platforms {
-    bottom: 15px;
-    gap: 12px;
-  }
-  
-  .platform-item img {
-    width: 50px;
-    height: 35px;
-  }
-}
-
-/* Very small screens */
-@media (max-width: 320px) {
-  .hero-title {
-    font-size: clamp(1.2rem, 4vw, 2rem);
-  }
-  
-  .btn-hero {
-    min-width: 160px;
-    min-height: 45px;
-    font-size: 0.8rem;
-  }
-  
   .social-icons img {
     width: 30px;
-    height: 30px;
   }
-  
-  .platform-item img {
-    width: 40px;
-    height: 30px;
-  }
-}
 
-/* Landscape orientation adjustments */
-@media (max-height: 600px) and (orientation: landscape) {
-  .home-section {
-    padding-bottom: 60px;
-  }
-  
-  .hero-center {
-    margin-top: 0;
-    margin-bottom: 0;
-  }
-  
-  .hero-title {
-    font-size: clamp(1.5rem, 4vh, 2.5rem);
-    margin-bottom: 15px;
-  }
-  
   .platforms {
     bottom: 10px;
+    gap: 8px;
   }
-}
-
-/* High DPI displays */
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-  .hero-title {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+  .platforms::before {
+    top: -18px;
+    font-size: 10px;
   }
-}
-
-/* Reduced motion preferences */
-@media (prefers-reduced-motion: reduce) {
-  .hero-title,
-  .btn-hero,
-  .social-icons,
-  .platforms,
-  .platform-item,
-  .social-icons a,
-  .social-icons img,
   .platform-item img {
+    width: 28px;
+  }
+}
+
+/* Hiệu ứng giảm chuyển động cho người dùng ưa thích */
+@media (prefers-reduced-motion: reduce) {
+  .btn-hero,
+  .social-icons a,
+  .platform-item {
     transition: none;
-  }
-  
-  .btn-hero:hover {
-    transform: none;
-  }
-  
-  .social-icons a:hover {
-    transform: none;
-  }
-  
-  .platform-item:hover {
-    transform: none;
   }
 }
