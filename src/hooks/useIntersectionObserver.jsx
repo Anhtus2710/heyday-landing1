@@ -9,7 +9,7 @@ export default function useIntersectionObserver(options = {}) {
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
-          observer.unobserve(entry.target); // chỉ animate 1 lần
+          observer.unobserve(entry.target);
         }
       },
       { threshold: 0.2, ...options }

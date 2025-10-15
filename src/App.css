@@ -10,7 +10,8 @@
    ======================================== */
 :root {
   --navbar-height: clamp(60px, 8vh, 80px);
-  --container-width: 1600px; /* Chiều rộng tối đa cho toàn bộ layout */
+  /* Keep container width fluid: min of 320px, preferred 1200px, max 1600px */
+  --container-width: clamp(320px, 75vw, 1600px);
   --container-padding: clamp(
     15px,
     3vw,
@@ -44,7 +45,8 @@ body {
   overflow-x: hidden;
   line-height: 110%;
   letter-spacing: -2%;
-  background: #0c0a09; /* Màu nền ở hai bên khi zoom out */
+  /* Full-bleed background image with color fallback so there are no black gaps at page sides */
+  background: url("/assets/image/picture.png") center top / cover no-repeat, #0c0a09;
   font-size: clamp(14px, 1rem, 18px);
 }
 
@@ -68,11 +70,8 @@ svg {
   margin: 0 auto; /* Căn giữa */
   overflow-x: hidden;
 
-  background-image: url("/assets/image/picture.png");
-  background-repeat: no-repeat;
-  background-position: center top;
-  background-size: cover;
-  background-attachment: scroll;
+  /* Content container sits on top of the full-bleed body background; keep it transparent */
+  background: transparent;
 
   position: relative;
   box-shadow: 0 0 35px rgba(185, 132, 42, 0.15); /* Hiệu ứng viền mờ */
@@ -166,8 +165,8 @@ svg {
    ======================================== */
 @media screen and (max-width: 768px) {
   .scroll-container {
-    /* Thay đổi hình nền cho mobile */
-    background-image: url("/assets/image/picture.png");
+    /* No per-container background on mobile; body provides the full-bleed background */
+    background: transparent;
   }
 
   .section {

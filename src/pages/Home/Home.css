@@ -13,9 +13,8 @@
 .home-section {
   position: relative; /* Rất quan trọng để định vị các phần tử con */
   width: 100%;
-  min-height: 100vh;
-  height: 100vh; /* Đảm bảo chiều cao đầy đủ để định vị các phần tử */
-  overflow: hidden;
+  min-height: 100vh; /* Use min-height only to avoid mobile viewport "100vh" issues (address bar/toolbars) and allow content to grow naturally on small devices */
+  overflow: visible; /* Allow children to expand without being clipped on small screens */
   display: flex; /* Dùng flexbox để căn giữa nội dung chính */
   flex-direction: column;
   align-items: center;
